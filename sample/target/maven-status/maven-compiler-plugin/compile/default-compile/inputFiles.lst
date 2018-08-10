@@ -1,5 +1,5 @@
-/Users/mitsuboshi/Develop/api/sample/src/main/java/edu/self/service/UserService.java
-/Users/mitsuboshi/Develop/api/sample/src/main/java/edu/self/controller/UserController.java
-/Users/mitsuboshi/Develop/api/sample/src/main/java/edu/self/entity/User.java
-/Users/mitsuboshi/Develop/api/sample/src/main/java/edu/self/App.java
-/Users/mitsuboshi/Develop/api/sample/src/main/java/edu/self/repository/UserRepository.java
+/Users/mitsuboshi/Develop/api/api-practiceApp/sample/src/main/java/edu/self/service/UserService.java
+/Users/mitsuboshi/Develop/api/api-practiceApp/sample/src/main/java/edu/self/entity/User.java
+/Users/mitsuboshi/Develop/api/api-practiceApp/sample/src/main/java/edu/self/repository/UserRepository.java
+/Users/mitsuboshi/Develop/api/api-practiceApp/sample/src/main/java/edu/self/App.java
+/Users/mitsuboshi/Develop/api/api-practiceApp/sample/src/main/java/edu/self/controller/UserController.java

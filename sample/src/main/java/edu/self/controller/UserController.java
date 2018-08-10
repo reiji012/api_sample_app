@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import edu.self.entity.User;
 import edu.self.service.UserService;
@@ -29,9 +32,16 @@ public class UserController {
         return userService.findUser(id);
     }
 
+//    @RequestMapping(method=RequestMethod.POST)
+//    public User createUser(@Validated @RequestBody User user) {
+//        return userService.save(user);
+//    }
+    
     @RequestMapping(method=RequestMethod.POST)
-    public User createUser(@Validated @RequestBody User user) {
-        return userService.save(user);
+    public ResponseEntity<User> createUser(@Validated @RequestBody User user) {
+    		User result = userService.save(user);
+    		return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    	
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="{id}")
@@ -41,7 +51,8 @@ public class UserController {
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
+         userService.delete(id);
     }
 }
