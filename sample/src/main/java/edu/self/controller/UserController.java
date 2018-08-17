@@ -2,7 +2,11 @@ package edu.self.controller;
 
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+import javax.resource.spi.RetryableUnavailableException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,22 +36,24 @@ public class UserController {
         return userService.findUser(id);
     }
 
-//    @RequestMapping(method=RequestMethod.POST)
-//    public User createUser(@Validated @RequestBody User user) {
-//        return userService.save(user);
-//    }
-    
     @RequestMapping(method=RequestMethod.POST)
-    public ResponseEntity<User> createUser(@Validated @RequestBody User user) {
-    		User result = userService.save(user);
-    		return ResponseEntity.status(HttpStatus.CREATED).body(result);
-    	
+    public User createUser(@Validated @RequestBody User user) {
+        return userService.save(user);
     }
+    
+//    @RequestMapping(method=RequestMethod.POST)
+//    public ResponseEntity<User> createUser(@Validated @RequestBody User user) {
+//    		User result = userService.save(user);
+//    		return ResponseEntity.status(HttpStatus.CREATED).body(result);
+//    	
+//    }
 
     @RequestMapping(method=RequestMethod.PUT, value="{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+    public User updateUser(@PathVariable("id") Long id, @RequestBody User user, BindingResult result) {
         user.setId(id);
-        return userService.save(user);
+        User users = userService.save(user);
+        search(result);
+        return users;
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="{id}")
@@ -55,4 +61,11 @@ public class UserController {
     public void deleteUser(@PathVariable("id") Long id) {
          userService.delete(id);
     }
+    
+    public String search(BindingResult result) {
+		if (result.hasErrors()) {
+			return "this is has Error";
+		}
+		return null;
+	}
 }
