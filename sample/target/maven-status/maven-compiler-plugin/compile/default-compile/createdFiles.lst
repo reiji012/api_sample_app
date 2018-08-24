@@ -1,5 +1,0 @@
-edu/self/entity/User.class
-edu/self/service/UserService.class
-edu/self/controller/UserController.class
-edu/self/repository/UserRepository.class
-edu/self/App.class
